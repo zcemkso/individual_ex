@@ -1,0 +1,25 @@
+.navbar{
+    background: darkcyan;
+}
+
+.form-container{
+    margin-right: 10%;
+    margin-left: 10%;
+    margin-top: 2%;
+}
+
+h1{
+    text-align: center;
+    margin-top: 50px;
+    margin-left: 400px;
+}
+
+h2{
+    text-align: center;
+    margin-top: 50px;
+}
+
+#search{
+    margin-top: 50px;
+
+}
