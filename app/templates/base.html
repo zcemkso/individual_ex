@@ -9,11 +9,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/main.css">
 
-    <title>Rain Blog</title>
+    <title>{% block title %}{% endblock %}</title>
+
   </head>
   <body>
-
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light">
       <a class="navbar-brand" href="/">Rain Blog</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,52 +20,32 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-item nav-link" href="/">Home</a>
-          <a class="nav-item nav-link" href="/signup">Sign Up</a>
+          <a class="nav-item nav-link" href="{{ url_for('main.index') }}">Home</a>
+          <a class="nav-item nav-link" href="{{ url_for('main.sign_up') }}">Sign Up</a>
         </div>
       </div>
+        <form class="form-inline my-2 my-lg-0" id="search">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
     </nav>
 
-    <!-- Form -->
-    <h2>Join Today!</h2>
-    <form class="needs-validation form-container" novalidate>
-      <div class="form-group">
-          <input type="text" class="form-control" id="validationCustom01" placeholder="Username" required>
-          <div class="invalid-feedback">
-            Please enter a valid username.
-          </div>
-      </div>
-      <div class="form-group">
-          <input type="email" class="form-control" id="validationCustom03" placeholder="E-Mail" required>
-          <div class="invalid-feedback">
-            Please provide a valid email.
-          </div>
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">Sumbit</button>
-      </div>
-  </form>
+    <main class="container">
 
-  <script>
-  // Example starter JavaScript for disabling form submissions if there are invalid fields
-  (function() {
-    'use strict';
-    window.addEventListener('load', function() {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName('needs-validation');
-      // Loop over them and prevent submission
-      var validation = Array.prototype.filter.call(forms, function(form) {
-        form.addEventListener('submit', function(event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-          form.classList.add('was-validated');
-        }, false);
-      });
-    }, false);
-  })();
-  </script>`
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="alert alert-info">
+            <ul class="list-unstyled">
+              {% for message in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      {% block content %}{% endblock %}
+    </main>
 
 
     <!-- Optional JavaScript -->

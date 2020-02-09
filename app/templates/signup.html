@@ -1,0 +1,18 @@
+{% from "_formhelpers.html" import render_field with context %}
+{% extends "base.html" %}
+
+{% block title%}
+    Sign Up
+{% endblock title%}
+
+{% block content %}
+    <h2>Join Today!</h2>
+  <form class="form-container" action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <dl>
+        {{ render_field(form.username, class="form-control") }}
+        {{ render_field(form.email, class="form-control") }}
+        <dd><input type=submit value='Sign Up' class='btn btn-primary'></dd>
+    </dl>
+  </form>
+{% endblock content %}
