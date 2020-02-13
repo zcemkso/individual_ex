@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+Forecast
+{% endblock %}
+
+{% block content %}
+    {% if forecast|length %}
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">City</th>
+                <th scope="col">Forecast</th>
+                <th scope="col">Comment</th>
+                <th scope="col">Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for fc in forecast %}
+                <tr>
+                    <td>{{ fc.city }}</td>
+                    <td>{{ fc[0].forecast }}</td>
+                    <td>{{ fc[0].comment }}</td>
+                    <td>{{ fc[0].forecast_datetime }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Sorry, no forecasts are available at this time</p>
+    {% endif %}
+{% endblock %}

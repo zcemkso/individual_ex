@@ -15,9 +15,8 @@ class Config(object):
 
     # Database config
     CWD = dirname(abspath(__file__))
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + join(CWD, 'IndEx1.db')
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + join(CWD, 'app/rain.sqlite')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-
 
 class ProdConfig(Config):
     DEBUG = False
